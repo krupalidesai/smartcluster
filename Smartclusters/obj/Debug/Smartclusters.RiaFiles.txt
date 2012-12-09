@@ -1,0 +1,2 @@
+C:\Users\Jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters
+Generated_Code\Smartclusters.Web.g.cs

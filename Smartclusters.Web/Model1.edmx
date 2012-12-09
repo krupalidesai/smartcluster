@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="smartclustersModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="smartclustersModelStoreContainer">
+          <EntitySet Name="registration" EntityType="smartclustersModel.Store.registration" store:Type="Tables" Schema="smartclusters" />
+          <EntitySet Name="stck_data" EntityType="smartclustersModel.Store.stck_data" store:Type="Tables" Schema="smartclusters" />
+          <AssociationSet Name="Reg_Id" Association="smartclustersModel.Store.Reg_Id">
+            <End Role="registration" EntitySet="registration" />
+            <End Role="stck_data" EntitySet="stck_data" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="Reg_Id" />
+          </Key>
+          <Property Name="Reg_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Lname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="E-mail" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="stck_data">
+          <Key>
+            <PropertyRef Name="stck_idxx" />
+          </Key>
+          <Property Name="stck_idxx" Type="int" Nullable="false" />
+          <Property Name="stck_name" Type="varchar" MaxLength="45" />
+          <Property Name="stck_sale" Type="int" />
+          <Property Name="stck_prft" Type="float" />
+          <Property Name="stck_aset" Type="float" />
+          <Property Name="stck_mrkt_valu" Type="float" />
+          <Property Name="Reg_Id" Type="int" />
+        </EntityType>
+        <Association Name="Reg_Id">
+          <End Role="registration" Type="smartclustersModel.Store.registration" Multiplicity="0..1" />
+          <End Role="stck_data" Type="smartclustersModel.Store.stck_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registration">
+              <PropertyRef Name="Reg_Id" />
+            </Principal>
+            <Dependent Role="stck_data">
+              <PropertyRef Name="Reg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SPGetStockData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="smartclusters">
+          <Parameter Name="Reg_id" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="smartclustersModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="smartclustersEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="registrations" EntityType="smartclustersModel.registration" />
+          <EntitySet Name="stck_data" EntityType="smartclustersModel.stck_data" />
+          <AssociationSet Name="Reg_Id" Association="smartclustersModel.Reg_Id">
+            <End Role="registration" EntitySet="registrations" />
+            <End Role="stck_data" EntitySet="stck_data" />
+          </AssociationSet>
+          <FunctionImport Name="SPGetStockData" ReturnType="Collection(smartclustersModel.SPGetStockData_Result)" >
+          <Parameter Name="Reg_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="Reg_Id" />
+          </Key>
+          <Property Name="Reg_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Lname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="E_mail" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="stck_data" Relationship="smartclustersModel.Reg_Id" FromRole="registration" ToRole="stck_data" />
+        </EntityType>
+        <EntityType Name="stck_data">
+          <Key>
+            <PropertyRef Name="stck_idxx" />
+          </Key>
+          <Property Name="stck_idxx" Type="Int32" Nullable="false" />
+          <Property Name="stck_name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="stck_sale" Type="Int32" />
+          <Property Name="stck_prft" Type="Single" />
+          <Property Name="stck_aset" Type="Single" />
+          <Property Name="stck_mrkt_valu" Type="Single" />
+          <Property Name="Reg_Id" Type="Int32" />
+          <NavigationProperty Name="registration" Relationship="smartclustersModel.Reg_Id" FromRole="stck_data" ToRole="registration" />
+        </EntityType>
+        <Association Name="Reg_Id">
+          <End Role="registration" Type="smartclustersModel.registration" Multiplicity="0..1" />
+          <End Role="stck_data" Type="smartclustersModel.stck_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registration">
+              <PropertyRef Name="Reg_Id" />
+            </Principal>
+            <Dependent Role="stck_data">
+              <PropertyRef Name="Reg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SPGetStockData_Result" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="smartclustersModelStoreContainer" CdmEntityContainer="smartclustersEntities1">
+          <EntitySetMapping Name="registrations">
+            <EntityTypeMapping TypeName="smartclustersModel.registration">
+              <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="Reg_Id" ColumnName="Reg_Id" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stck_data">
+            <EntityTypeMapping TypeName="smartclustersModel.stck_data">
+              <MappingFragment StoreEntitySet="stck_data">
+                <ScalarProperty Name="stck_idxx" ColumnName="stck_idxx" />
+                <ScalarProperty Name="stck_name" ColumnName="stck_name" />
+                <ScalarProperty Name="stck_sale" ColumnName="stck_sale" />
+                <ScalarProperty Name="stck_prft" ColumnName="stck_prft" />
+                <ScalarProperty Name="stck_aset" ColumnName="stck_aset" />
+                <ScalarProperty Name="stck_mrkt_valu" ColumnName="stck_mrkt_valu" />
+                <ScalarProperty Name="Reg_Id" ColumnName="Reg_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPGetStockData" FunctionName="smartclustersModel.Store.SPGetStockData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="smartclustersModel.SPGetStockData_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

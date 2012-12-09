@@ -1,0 +1,48 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+		xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  xmlns:Web="clr-namespace:Smartclusters.Web"  x:Class="Smartclusters.MainPage"
+		mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600">
+    
+    <Grid x:Name="LayoutRoot" Width="900" Height="600">
+        
+        <Canvas Margin="2" Background="AliceBlue">
+            <Button x:Name="menu1" Content="Back" Click="menu1_Click_1"  Width="50" Height="25" Canvas.Left="10"></Button>
+        </Canvas>
+        
+        <toolkit:TreeMap Grid.Row="1" ItemsSource="{Binding}" Name="SilverlightTreemap" Width="640" Height="480">
+            <toolkit:TreeMap.ItemDefinition>
+                <toolkit:TreeMapItemDefinition ValuePath="stck_mrkt_valu">
+                    <DataTemplate>
+                        <Border Background="Lavender" Padding="3" BorderBrush="LightSeaGreen" BorderThickness="1" CornerRadius="4" ToolTipService.ToolTip="{Binding stck_mrkt_valu}">
+                            <TextBlock Text="{Binding stck_name}" Foreground="BlueViolet" FontSize="16" FontFamily="calibri"></TextBlock>
+                        </Border>
+                    </DataTemplate>
+                    
+                </toolkit:TreeMapItemDefinition>
+                
+            </toolkit:TreeMap.ItemDefinition>
+            
+        </toolkit:TreeMap>
+
+                        <!--<telerik:RadTreeMap x:Name="treeMap1"  FlowDirection="LeftToRight" FontFamily="verdana" FontSize="14" FontWeight="SemiBold" BorderThickness="1" LayoutStrategy="Squarified"  
+                            Padding="1"  Width="640" Height="480" BorderBrush="#FF5F031C" Grid.ColumnSpan="2" ItemsSource="{Binding}" Foreground="Black">
+            
+            <telerik:RadTreeMap.TypeDefinitions>
+                
+                <telerik:TypeDefinition x:Name="StockDataTypeDefinition" TargetTypeName="stck_data" ValuePath="stck_mrkt_valu" LabelPath="stck_name">
+                    <telerik:TypeDefinition.Mappings>
+                        <telerik:DesaturationColorizer From="1" To="0.2" StartColor="#69C7D3"/>
+                    </telerik:TypeDefinition.Mappings>
+                </telerik:TypeDefinition>
+                
+            </telerik:RadTreeMap.TypeDefinitions>
+            
+        </telerik:RadTreeMap> -->
+        
+
+    </Grid>
+</UserControl>

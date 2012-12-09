@@ -1,0 +1,7 @@
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\bin\Smartclusters.Web.dll
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\bin\Smartclusters.Web.pdb
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\bin\EntityFramework.dll
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\bin\EntityFramework.xml
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\obj\Debug\Smartclusters.Web.csprojResolveAssemblyReference.cache
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\obj\Debug\Smartclusters.Web.dll
+c:\users\jetal\documents\visual studio 2012\Projects\OSS\tmp\Smartclusters\Smartclusters.Web\obj\Debug\Smartclusters.Web.pdb

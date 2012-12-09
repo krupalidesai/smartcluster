@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="de86368db5e74ccd90d918f49f83eabd" Name="Diagram1">
+        <EntityTypeShape EntityType="smartclustersModel.registration" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="smartclustersModel.stck_data" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="smartclustersModel.Reg_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="smartclustersModel.country_data" Width="1.5" PointX="8.9029715065392523" PointY="27.284533096144223" />
+        <AssociationConnector Association="smartclustersModel.Reg_id1" />
+        <AssociationConnector Association="smartclustersModel.RegId" />
+        <AssociationConnector Association="smartclustersModel.Reg_id1" />
+        <AssociationConnector Association="smartclustersModel.RegId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

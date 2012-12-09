@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smartclustersModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="smartclustersEntities2" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="country_data" EntityType="smartclustersModel.country_data" />
+    <EntitySet Name="registrations" EntityType="smartclustersModel.registration" />
+    <EntitySet Name="stck_data" EntityType="smartclustersModel.stck_data" />
+    <AssociationSet Name="Reg_id" Association="smartclustersModel.Reg_id">
+      <End Role="registration" EntitySet="registrations" />
+      <End Role="country_data" EntitySet="country_data" />
+    </AssociationSet>
+    <AssociationSet Name="RegId" Association="smartclustersModel.RegId">
+      <End Role="registration" EntitySet="registrations" />
+      <End Role="stck_data" EntitySet="stck_data" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="country_data">
+    <Key>
+      <PropertyRef Name="Countryname" />
+    </Key>
+    <Property Name="Countryname" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="Population" Type="Int32" Nullable="false" />
+    <Property Name="Reg_id" Type="Int32" />
+    <NavigationProperty Name="registration" Relationship="smartclustersModel.Reg_id" FromRole="country_data" ToRole="registration" />
+  </EntityType>
+  <EntityType Name="registration">
+    <Key>
+      <PropertyRef Name="Reg_Id" />
+    </Key>
+    <Property Name="Reg_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Lname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="ConfirmPassword" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="country_data" Relationship="smartclustersModel.Reg_id" FromRole="registration" ToRole="country_data" />
+    <NavigationProperty Name="stck_data" Relationship="smartclustersModel.RegId" FromRole="registration" ToRole="stck_data" />
+  </EntityType>
+  <EntityType Name="stck_data">
+    <Key>
+      <PropertyRef Name="stck_idxx" />
+    </Key>
+    <Property Name="stck_idxx" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="stck_name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="stck_sale" Type="Int32" />
+    <Property Name="stck_prft" Type="Single" />
+    <Property Name="stck_aset" Type="Single" />
+    <Property Name="stck_mrkt_valu" Type="Single" />
+    <Property Name="RegId" Type="Int32" />
+    <NavigationProperty Name="registration" Relationship="smartclustersModel.RegId" FromRole="stck_data" ToRole="registration" />
+  </EntityType>
+  <Association Name="Reg_id">
+    <End Role="registration" Type="smartclustersModel.registration" Multiplicity="0..1" />
+    <End Role="country_data" Type="smartclustersModel.country_data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="registration">
+        <PropertyRef Name="Reg_Id" />
+      </Principal>
+      <Dependent Role="country_data">
+        <PropertyRef Name="Reg_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RegId">
+    <End Role="registration" Type="smartclustersModel.registration" Multiplicity="0..1" />
+    <End Role="stck_data" Type="smartclustersModel.stck_data" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="registration">
+        <PropertyRef Name="Reg_Id" />
+      </Principal>
+      <Dependent Role="stck_data">
+        <PropertyRef Name="RegId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
